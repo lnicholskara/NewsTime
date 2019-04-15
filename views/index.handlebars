@@ -1,4 +1,22 @@
-<div class="container blue-grey darken-3 white-text">
-    
-    
+
+<div class="row">
+{{#each articles}}
+
+  
+    <div class="col s12 m6 xl-4">
+      <div class="card card-panel hoverable z-depth-4" style="margin-botton: 40px" id="{{this._id}}">
+        <div class="card-image">
+          <img class="responsive-img" src="{{this.picture}}">
+          
+          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite_border</i></a>
+        </div>
+        <div class="card-content black-text">
+            <a href="{{this.link}}" target="_blank"><span class="card-title">{{this.title}}</span></a>
+            <p>{{this.summary}}</p>
+        </div>
+      </div>
+    </div>
+
+
+{{/each}}
 </div>

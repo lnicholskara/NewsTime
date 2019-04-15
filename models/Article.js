@@ -1,3 +1,8 @@
+var mongoose = require("mongoose");
+
+// Save a reference to the Schema constructor
+var Schema = mongoose.Schema;
+
 var ArticleSchema = new Schema({
     title: {
         type: String,
@@ -5,6 +10,10 @@ var ArticleSchema = new Schema({
         unique: true
     },
     link: {
+        type: String,
+        required: true
+    },
+    summary: {
         type: String,
         required: true
     },

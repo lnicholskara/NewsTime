@@ -25,9 +25,28 @@ app.set("view engine", "handlebars");
 require("./routes/htmlroutes")(app);
 //require("./routes/APIroutes")(app);
 
-// Connect to Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
-mongoose.connect(MONGODB_URI);
+// Mongoose
+var Note = require("./models/Note");
+var Article = require("./models/Article");
+var databaseUrl = 'mongodb://localhost/scrap';
+
+if (process.env.MONGODB_URI) {
+	mongoose.connect(process.env.MONGODB_URI);
+}
+else {
+	mongoose.connect(databaseUrl);
+};
+
+mongoose.Promise = Promise;
+var db = mongoose.connection;
+
+db.on("error", function(error) {
+	console.log("Mongoose Error: ", error);
+});
+
+db.once("open", function() {
+    console.log("Mongoose connection successful.");
+});
 
 // Connect 
 app.listen(PORT, function() {
