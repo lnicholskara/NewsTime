@@ -23,7 +23,11 @@ var ArticleSchema = new Schema({
     },
     favorite: {
         type: Boolean,
-        default: true
+        default: false
+    },
+    date_added: {
+        type: Date,
+        default: Date.now
     },
     note: {
         type: Schema.Types.ObjectId,

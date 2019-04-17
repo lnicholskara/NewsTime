@@ -1,22 +1,23 @@
+<div class="row">
+
+
+</div>
 
 <div class="row">
 {{#each articles}}
 
-  
     <div class="col s12 m6 xl-4">
-      <div class="card card-panel hoverable z-depth-4" style="margin-botton: 40px" id="{{this._id}}">
+        <div class="card card-panel hoverable z-depth-4" style="margin-botton: 40px">
         <div class="card-image">
-          <img class="responsive-img" src="{{this.picture}}">
-          
-          <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">favorite_border</i></a>
+            <img class="responsive-img" src="{{this.picture}}">
+            <button class="btn-floating halfway-fab waves-effect waves-light red favorite" type = "submit" value ="{{this._id}}"><i class="material-icons">favorite_border</i></button>
         </div>
-        <div class="card-content black-text">
+        <div class="card-content blue-grey-text darken-4-text">
             <a href="{{this.link}}" target="_blank"><span class="card-title">{{this.title}}</span></a>
-            <p>{{this.summary}}</p>
+            <p style="font-weight: 500">{{this.summary}}</p>
         </div>
-      </div>
+        </div>
     </div>
-
 
 {{/each}}
 </div>

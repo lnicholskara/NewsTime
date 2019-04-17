@@ -1,4 +1,21 @@
-<div class="container blue-grey darken-3 white-text">
-    
-    
+<div class="row">
+{{#each articles}}
+
+    <div class="col s12 m6 xl-4">
+        <div class="card card-panel hoverable z-depth-4">
+        <div class="card-image">
+            <img class="responsive-img" src="{{this.picture}}">
+        </div>
+        <div class="card-content blue-grey-text darken-4-text">
+            <a href="{{this.link}}" target="_blank"><span class="card-title blue-grey-text darken-4-text">{{this.title}}</span></a>
+        </div>
+        <div class="card-action">
+            <a style="font-weight: 600" class="blue-text" href="/favorite/{{this._id}}"><i class="material-icons">add</i> Add Note</a>
+            <a style="font-weight: 600" class="red-text remove" id ="{{this._id}}"
+            ><i class="material-icons">remove_circle_outline</i> Remove</a>
+        </div>
+        </div>
+    </div>
+
+{{/each}}
 </div>

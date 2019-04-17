@@ -1,18 +1,15 @@
-<!DOCTYPE html>
+
 <html>
 
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
-    {{!-- Added CSS --}}
-    <link rel="stylesheet" href="/public/css/style.css" type="text/css">
-
     <!-- Compiled and minified CSS - Materialize -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
     {{!-- Google Fonts --}}
-    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,500i,700,700i,900" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 
@@ -26,6 +23,7 @@
             font-weight: 700;
             font-size: 170%;
             letter-spacing: 1.7px;
+            font-style: italic
         }
     </style>
 </head>
@@ -39,8 +37,8 @@
                 <div class="logo center-block"></div>
             </a>
             <ul class="right">
-                <li><a id="" href="/scrape">New Articles</a></li>
-                <li><a id="" href="/favorites">Favorites</a></li>
+                <li><a id="" href="/scrape" style="font-weight: 500">New Articles</a></li>
+                <li><a id="" href="/favorites" style="font-weight: 500">Favorites</a></li>
             </ul>
             <a href="/" data-activates="nav-mobile" class="button-collapse" id = "title">NewsTime</a>
         </div>
@@ -53,9 +51,8 @@
 
 </div>
 
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js" type="text/javascript"></script>
+    <script src="/js/app.js"></script>
 </body>
 
 </html>

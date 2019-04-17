@@ -7,11 +7,18 @@ module.exports = function(app) {
 
     // Home Page
     app.get("/", function(req, res) {
-        Article.find({}, null, {sort: {created: -1}}, function(err, data) {
+        Article.find({}, null, {
+            skip:0, // Starting Row
+            limit:10, // Ending Row
+            sort:{
+                date_added: -1 //Sort by Date Added DESC
+            }
+        }, function(err, data) {
             if(data.length === 0) {
                 res.render("placeholder", {message: "There's nothing scraped yet. Please click \"Scrape For Newest Articles\" for fresh and delicious news."});
             }
             else{
+                console.log(data);
                 res.render("index", {articles: data});
             }
         });
@@ -36,7 +43,6 @@ module.exports = function(app) {
                     result.link = $(element).find("h2.title").children().attr("href");
                     result.summary = $(element).find("p.teaser").text();
                     result.picture = $(element).find("img").attr("src");
-        
 
                     console.log(result);
 
@@ -51,6 +57,8 @@ module.exports = function(app) {
                 });
                 
                 });
+            })
+            .then(function(reply) {
                 console.log("Scrape finished.");
                 res.redirect("/"); 
             });
@@ -58,11 +66,36 @@ module.exports = function(app) {
     });
 
     app.get("/favorites", function(req, res) {
-        res.render("favorite", {});
+        Article.find({favorite: true}, null, {sort: {date_added: -1}}, function(err, data) {
+            if(data.length === 0) {
+                res.render("placeholder", {message: "There's nothing favorited yet. Please go back to the home page and 'heart' an article."});
+            }
+            else{
+                res.render("favorite", {articles: data});
+            }
+        });
+    });
+
+    app.post("/api/favorite/:id", function(req, res) {
+        console.log(req.params.id);
+        Article.findByIdAndUpdate(req.params.id, {$set: {favorite: true}}, {new: true}, function(err, data) {
+            console.log(data);
+        });
+    });
+
+    app.post("/api/remove/:id", function(req, res) {
+        Article.findByIdAndUpdate(req.params.id, {$set: {favorite: false}}, {new: true}, function(err, data) {
+            res.redirect("/favorites")
+        });
     });
 
     app.get("/favorite/:id", function(req, res) {
-        res.render("comment", {});
+        console.log(req.params.id);
+        Article.find({_id: req.params.id}, null, function(err, data) {
+        var object = data[0];
+        console.log(object);
+        res.render("comment", data[0]);
+        });
     });
 
     app.get("*", function(req, res) {
