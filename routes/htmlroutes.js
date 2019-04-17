@@ -11,7 +11,7 @@ module.exports = function(app) {
             skip:0, // Starting Row
             limit:10, // Ending Row
             sort:{
-                date_added: -1 //Sort by Date Added DESC
+                date_added: 1 //Sort by Date Added DESC
             }
         }, function(err, data) {
             if(data.length === 0) {
