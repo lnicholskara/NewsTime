@@ -26,16 +26,9 @@ require("./routes/htmlroutes")(app);
 //require("./routes/APIroutes")(app);
 
 // Mongoose
-var Note = require("./models/Note");
-var Article = require("./models/Article");
-var databaseUrl = 'mongodb://localhost/scrap';
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-if (process.env.MONGODB_URI) {
-	mongoose.connect(process.env.MONGODB_URI);
-}
-else {
-	mongoose.connect(databaseUrl);
-};
+mongoose.connect(MONGODB_URI);
 
 mongoose.Promise = Promise;
 var db = mongoose.connection;
